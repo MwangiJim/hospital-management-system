@@ -65,7 +65,7 @@ $doctor_details = mysqli_fetch_assoc($res);
             color: #000;
             width: 100%;
         }
-        .left_section li a:hover{
+        .left_section li:hover{
             background-color: rgb(64, 7, 117);
             color: #fff;
             padding: 12px 20px;

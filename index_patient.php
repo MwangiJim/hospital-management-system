@@ -2,11 +2,19 @@
  session_start();
  include './config/hms.config.php';
 $email = $_SESSION['session_id'];
+if(isset($_POST['submit-logout'])){
+    session_unset();
+    session_destroy();
+
+    header('Location:./login_patient.php');
+    die();
+    exit();
+ }
 
  $sql = "SELECT * FROM patient WHERE email = '$email'";
  $res = mysqli_query($conn,$sql);
  $patient_detail = mysqli_fetch_assoc($res);
- print_r($patient_detail);
+ //print_r($patient_detail);
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +42,7 @@ $email = $_SESSION['session_id'];
             cursor: pointer;
             list-style: none;
             color: #000;
+            width: 100%;
         }
         .left_section li a{
             text-decoration: none;
@@ -41,12 +50,12 @@ $email = $_SESSION['session_id'];
             cursor: pointer;
             list-style: none;
             color: #000;
-            width: 100%;
         }
-        .left_section li a:hover{
+        .left_section li :hover{
             background-color: rgb(64, 7, 117);
             color: #fff;
             padding: 12px 20px;
+            width: 100%;
         }
         .right_section{
             flex-basis: 76%;
@@ -112,14 +121,14 @@ $email = $_SESSION['session_id'];
                         <img src="./images/bookmark.png"/>
                     </div>
                     <h2>Book My Appointment</h2>
-                     <a href="#">Book Appointment</a>
+                     <a href="./includes/appointment_booking.inc.php">Book Appointment</a>
                 </div>
                 <div class="boxes">
                     <div class="image_icon">
                         <img src="./images/paperclip.png"/>
                     </div>
-                    <h2>My Appointment</h2>
-                     <a href="#">View Appointment History</a>
+                    <h2>My Appointments</h2>
+                     <a href="./includes/viewappointments.inc.php">View Appointment History</a>
                 </div>
                 <div class="boxes boxes_bottom">
                     <div class="image_icon">
