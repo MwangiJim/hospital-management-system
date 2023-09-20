@@ -10,7 +10,7 @@ if(isset($_POST['submit-logout'])){
     die();
     exit();
  }
- $email = $_SESSION['doctor_session'];
+$email = $_SESSION['doctor_session'];
 $sql = "SELECT * FROM doctors WHERE email = '$email'";
 $res = mysqli_query($conn,$sql);
 $doctor_details = mysqli_fetch_assoc($res);
@@ -119,14 +119,15 @@ $doctor_details = mysqli_fetch_assoc($res);
             </form>
         </div>
     </div>
+       <?php if(isset($_SESSION['doctor_session'])): ?>
         <div class="dashboard_section">
-        <div class="left_section">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Book Appointment</a></li>
-            <li><a href="#">Appointment History</a></li>
-            <li><a href="#">Prescription</a></li>
-        </div>
-        <div class="right_section">
+            <div class="left_section">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Book Appointment</a></li>
+                <li><a href="#">Appointment History</a></li>
+                <li><a href="#">Prescription</a></li>
+            </div>
+          <div class="right_section">
             <h1>Welcome Dr <?php echo $doctor_details['name']?></h1>
             <div class="pages">
                 <div class="boxes">
@@ -134,17 +135,21 @@ $doctor_details = mysqli_fetch_assoc($res);
                         <img src="./images/paperclip.png"/>
                     </div>
                     <h2>View Appointment</h2>
-                     <a href="#">View Appointment List</a>
+                     <a href="./includes/doctorview.inc.php">View Appointment List</a>
                 </div>
                 <div class="boxes boxes_bottom">
                     <div class="image_icon">
                         <img src="./images/prescription.png"/>
                     </div>
                     <h2>Prescriptions</h2>
-                     <a href="#"> Prescriptions List</a>
+                     <a href="./includes/view_prescriptions.inc.php"> Prescriptions List</a>
                 </div>
             </div>
         </div>
+        <?php else :?>
+            <h2>Session Timed Out!</h2>
+            <?php include './includes/login_doctor.inc.php'?>
+        <?php endif ?>
     </section>
 </body>
 </html>

@@ -106,7 +106,8 @@ if(isset($_POST['submit-logout'])){
             </form>
         </div>
     </div>
-    <div class="dashboard_section">
+    <?php if(isset($_SESSION['session_id'])): ?>
+          <div class="dashboard_section">
         <div class="left_section">
             <li><a href="#">Dashboard</a></li>
             <li><a href="#">Book Appointment</a></li>
@@ -140,6 +141,10 @@ if(isset($_POST['submit-logout'])){
             </div>
         </div>
     </div>
+        <?php else :?>
+            <h2>Session Timed Out!!</h2>
+            <?php include './login_patient.php' ?>
+    <?php endif?>
     </section>
 </body>
 </html>
