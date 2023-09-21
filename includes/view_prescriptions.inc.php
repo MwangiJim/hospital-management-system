@@ -14,7 +14,7 @@
   $res = mysqli_query($conn,$sql);
   $doctor_info = mysqli_fetch_assoc($res);
 
-  
+
 ?>
 
 <!DOCTYPE html>
