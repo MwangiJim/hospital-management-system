@@ -1,5 +1,5 @@
 <?php 
- include '../config/hms.config.php';
+ include './config/hms.config.php';
  if(isset($_POST['submit-login'])){
     if(empty($_POST['email']) || empty($_POST['password'])){
         header('Location:./login_doctor.inc.php?error=MissingInputFields');
@@ -25,7 +25,7 @@
             else{
                 session_start();
                 $_SESSION['doctor_session'] = $doctor_info['email'];
-                header('Location:../index_doctor.php?loginSuccessfull');
+                header('Location:./index_doctor.php?loginSuccessfull');
                 exit();
             }
         }
@@ -36,13 +36,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../styles.css"/>
+    <link rel="stylesheet" href="./styles.css"/>
+    <style>
+        .doctor_reg_body{
+            background-color: #fff;
+        }
+        .doctor_form{
+            background-color: #d3d3d3;
+        }
+    </style>
 </head>
 <body>
     <section class="doctor_reg_body">
         <div class="doctor_form">
            <div class="buttons">
-                <a href="../register_patient.php">Patient</a>
+                <a href="./register_patient.php">Patient</a>
                 <a href="./register_doctor.inc.php">Doctor</a>
                 <a href="#">Admin</a>
               </div>

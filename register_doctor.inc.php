@@ -1,5 +1,5 @@
 <?php 
-include '../config/hms.config.php';
+include './config/hms.config.php';
 
 if(isset($_POST['submit-doctor'])){
  if(empty($_POST['doctor_name']) || empty($_POST['doctor_username']) || empty($_POST['specialization']) ||
@@ -50,7 +50,7 @@ if(isset($_POST['submit-doctor'])){
          VALUES('$name','$username','$specialization','$email','$hashPwd','$fees')";
 
          if(mysqli_query($conn,$sql)){
-            header('Location:./login_doctor.inc.php?DocAccountCreate==true');
+            header('Location:./index_doctor.php?DocAccountCreate==true');
             exit();
          }
          else{
@@ -66,7 +66,7 @@ if(isset($_POST['submit-doctor'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../styles.css"/>
+    <link rel="stylesheet" href="./styles.css"/>
 </head>
 <body>
     <div class="doctor_reg_form">
@@ -75,7 +75,7 @@ if(isset($_POST['submit-doctor'])){
         </div>
         <div class="right-side">
              <div class="buttons">
-                <a href="../register_patient.php">Patient</a>
+                <a href="./register_patient.php">Patient</a>
                 <a href="./register_doctor.inc.php">Doctor</a>
                 <a href="#">Admin</a>
               </div>
@@ -117,7 +117,7 @@ if(isset($_POST['submit-doctor'])){
                     <input name="fees" type="number"/>
                 </div>
                 <button type="submit" name="submit-doctor">Create HMS Doctor Account</button>
-                <p>Already Have Account><a href="./login_doctor.inc.php">Login Here</a></p>
+                <p>Already Have Account><a href="./index_doctor.php">Login Here</a></p>
             </form>
         </div>
     </div>

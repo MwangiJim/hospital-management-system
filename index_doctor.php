@@ -6,8 +6,7 @@ if(isset($_POST['submit-logout'])){
     session_unset();
     session_destroy();
 
-    header('Location:./includes/login_doctor.inc.php');
-    die();
+    header('Location:./index_doctor.php');
     exit();
  }
 $email = $_SESSION['doctor_session'];
@@ -39,7 +38,12 @@ $doctor_details = mysqli_fetch_assoc($res);
     list-style: none;
     padding: 10px 12px;
 }
-        .body{
+        .doctor_page{
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            position: absolute;
             background-color: #fff;
         }
         .dashboard_section{
@@ -122,10 +126,10 @@ $doctor_details = mysqli_fetch_assoc($res);
        <?php if(isset($_SESSION['doctor_session'])): ?>
         <div class="dashboard_section">
             <div class="left_section">
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Book Appointment</a></li>
-                <li><a href="#">Appointment History</a></li>
-                <li><a href="#">Prescription</a></li>
+                <li><a href="./index_doctor.php">Dashboard</a></li>
+                <li><a href="./includes/appointment_booking.inc.php">Book Appointment</a></li>
+                <li><a href="./includes/viewappointments.inc.php">Appointment History</a></li>
+                <li><a href="./includes/prescription.inc.php">Prescription</a></li>
             </div>
           <div class="right_section">
             <h1>Welcome Dr <?php echo $doctor_details['name']?></h1>
@@ -148,7 +152,7 @@ $doctor_details = mysqli_fetch_assoc($res);
         </div>
         <?php else :?>
             <h2>Session Timed Out!</h2>
-            <?php include './includes/login_doctor.inc.php'?>
+            <?php include './login_doctor.inc.php'?>
         <?php endif ?>
     </section>
 </body>

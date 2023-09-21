@@ -5,8 +5,7 @@ if(isset($_POST['submit-logout'])){
     session_unset();
     session_destroy();
 
-    header('Location:../login_patient.php');
-    die();
+    header('Location:../index_patient.php');
     exit();
 }
  $email = $_SESSION['session_id'];
@@ -182,7 +181,10 @@ $patient_appointments = mysqli_fetch_all($res,MYSQLI_ASSOC);
                     <div class="four"><?php echo $patient_appointment['appointment_date']?></div>
                     <div class="five"><?php echo $patient_appointment['appointment_time']?></div>
                     <div class="six">Active</div>
-                    <div class="seven"><button>Cancel</button></div>
+                    <form action="./cancel_appointment.php" method="POST">
+                     <input type="hidden" name="id-to-cancel" value="<?php echo $patient_appointment['id'] ?>">
+                      <div class="seven"><button type="submit" name="appointment-to-cancel">Cancel</button></div>
+                   </form>
                  </div>    
             <?php endforeach?>
         </div>

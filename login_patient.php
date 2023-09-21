@@ -37,15 +37,23 @@
 <html lang="en">
 <head>
 <link rel="stylesheet" href="./styles.css">
+<style>
+    .login_body{
+        background-color: #fff;
+    }
+    .login_body form{
+        background-color: #d3d3d3;
+    }
+</style>
 </head>
 <body>
     <div class="login_body">
+        <form action="./login_patient.php" method="POST">
            <div class="buttons">
                 <a href="./register_patient.php">Patient</a>
-                <a href="./includes/register_doctor.inc.php">Doctor</a>
+                <a href="./register_doctor.inc.php">Doctor</a>
                 <a href="#">Admin</a>
               </div>
-        <form action="./login_patient.php" method="POST">
             <h2 style="text-align: center;">Patient Login</h2>
             <label>Email</label>
             <br/>

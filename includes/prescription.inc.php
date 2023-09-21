@@ -1,26 +1,24 @@
 <?php 
  session_start();
  
- $id = $_GET['name-to-prescribe'];
  include '../config/hms.config.php';
  if(isset($_POST['submit-logout'])){
     session_unset();
     session_destroy();
 
-    header('Location:./login_doctor.inc.php');
+    header('Location:../index_doctor.php');
     exit();
-    die();
  }
 $email = $_SESSION['doctor_session'];
  $sql = "SELECT * FROM doctors WHERE email='$email'";
  $res = mysqli_query($conn,$sql);
  $doctor_info = mysqli_fetch_assoc($res);
 
- echo $id;
- $sqli_appointment  = "SELECT * FROM appointments WHERE id = '$id'";
+ $id = $_POST['name-to-prescribe'];
+ $sqli_appointment  = "SELECT * FROM appointments WHERE `id` = '$id'";
  $response  = mysqli_query($conn,$sqli_appointment);
  $patient_appointment = mysqli_fetch_assoc($response);
-  print_r($patient_appointment);
+ print_r($patient_appointment);
     //echo $patient_name;
  if(isset($_POST['submit-prescription'])){
    if(empty($_POST['disease']) || empty($_POST['allergies']) || empty($_POST['prescription'])){

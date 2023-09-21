@@ -5,9 +5,8 @@ session_start();
     session_unset();
     session_destroy();
 
-    header('Location:./login_doctor.inc.php');
+    header('Location:../index_doctor.php');
     exit();
-    die();
  }
  $email = $_SESSION['doctor_session'];
 
@@ -202,7 +201,12 @@ session_start();
                             <div class="six"><?php echo htmlspecialchars($appointment['appointment_date'])?></div>
                             <div class="seven" style="font-size: 12px;"><?php echo htmlspecialchars($appointment['appointment_time'])?></div>
                             <div class="eight">Active</div>
-                            <div class="nine"><button class="cancel" type="submit" name="submit-cancel">Cancel</button></div>
+                            <div class="nine">
+                                <form action="./cancel_appointment.php" method ="POST">
+                                   <input type="hidden" name="id-to-cancel" value = "<?php echo $appointment['id']?>">
+                                  <button class="cancel" type="submit" name="appointment-to-cancel">Cancel</button>
+                                </form>
+                            </div>
                             <div class="nine"><form action="./prescription.inc.php" method="POST">
                                 <input type="hidden" name="name-to-prescribe" value="<?php echo $appointment['id'] ?>">
                                 <button class="green" type="submit" name="prescribe">Prescribe</button>

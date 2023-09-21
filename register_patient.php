@@ -57,7 +57,7 @@
                 VALUES('$f_name','$l_name','$email','$contact','$hashPwd','$gender')";
 
                 if(mysqli_query($conn,$sql)){
-                    header('Location:./login_patient.php?patientAccount==true');
+                    header('Location:./index_patient.php?patientAccount==true');
                     exit();
                 }
                 else{
@@ -83,7 +83,7 @@
         <div class="right_side">
               <div class="buttons">
                 <a href="./register_patient.php">Patient</a>
-                <a href="./includes/register_doctor.inc.php">Doctor</a>
+                <a href="./register_doctor.inc.php">Doctor</a>
                 <a href="#">Admin</a>
               </div>
                 <form action="./register_patient.php" method="POST">
@@ -101,7 +101,7 @@
                     <input type="password" name="password" placeholder="Password">
                     <input type="password" name="c_password" placeholder="Confirm Password">
                     <button type="submit" name="submit-patient">Create HMS Account</button>
-                    <p>Already Have Account?<a href="./login_patient.php">Login Here</a></p>
+                    <p>Already Have Account?<a href="./index_patient.php">Login Here</a></p>
                 </div>
                 </form>
         </div>

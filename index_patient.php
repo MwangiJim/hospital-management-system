@@ -1,16 +1,13 @@
 <?php 
  session_start();
  include './config/hms.config.php';
-$email = $_SESSION['session_id'];
 if(isset($_POST['submit-logout'])){
     session_unset();
     session_destroy();
-
-    header('Location:./login_patient.php');
-    die();
+    header('Location:./index_patient.php');
     exit();
  }
-
+ $email = $_SESSION['session_id'];
  $sql = "SELECT * FROM patient WHERE email = '$email'";
  $res = mysqli_query($conn,$sql);
  $patient_detail = mysqli_fetch_assoc($res);
@@ -101,9 +98,11 @@ if(isset($_POST['submit-logout'])){
         <div class="right">
             <li>HOME</li>
             <li>CONTACT</li>
+            <?php if(isset($_SESSION['session_id'])): ?>
             <form action="./logout.php" method="POST">
                 <button name="submit-logout" type="submit">LOGOUT</button>
             </form>
+            <?php endif ?>
         </div>
     </div>
     <?php if(isset($_SESSION['session_id'])): ?>

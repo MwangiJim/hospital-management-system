@@ -5,15 +5,18 @@
      session_unset();
      session_destroy();
  
-     header('Location:./login_doctor.inc.php');
+     header('Location:../index_doctor.php');
      exit();
-     die();
   }
   $email = $_SESSION['doctor_session'];
   $sql = "SELECT * FROM doctors WHERE email = '$email'";
   $res = mysqli_query($conn,$sql);
   $doctor_info = mysqli_fetch_assoc($res);
-
+  $doc_name = $doctor_info['name'];
+  $sql_prescription = "SELECT * FROM prescription WHERE doctor_name = '$doc_name'";
+  $response = mysqli_query($conn,$sql_prescription);
+  $prescriptions = mysqli_fetch_all($response,MYSQLI_ASSOC);
+  print_r($prescriptions);
 
 ?>
 
@@ -77,7 +80,27 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-
+            margin: 2% 0;
+            font-weight: bolder;
+        }
+        .prescription{
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+            padding:12px 10px;
+        }
+        .prescription:hover{
+            background-color: rgba(77,76,76,0.6);
+            border-radius: 10px;
+        }
+        .prescription #one{
+            flex-basis: 6%;
+        }
+        .prescription .two{
+            flex-basis: 10%;
+        }
+        .prescription .one{
+            flex-basis: 6%;
         }
     </style>
 </head>
@@ -95,8 +118,8 @@
         </div>
         <div class="dashboard_section">
             <div class="left_section">
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Appointments</a></li>
+                <li><a href="../index_doctor.php">Dashboard</a></li>
+                <li><a href="./doctorview.inc.php">Appointments</a></li>
                 <li><a href="#">Prescriptions</a></li>
             </div>
           <div class="right_section">
@@ -111,13 +134,18 @@
                     <div>Allergy</div>
                     <div>Prescribe</div>
                 </div>
-                <div class="appointment_list">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                <div class="prescription_list">
+                    <?php foreach($prescriptions as $prescription) : ?>
+                        <div class="prescription">
+                            <div id="one"><?php echo $prescription['id']?></div>
+                            <div class="two">Malcom Mazigulu</div>
+                            <div class="three">2023-10-11</div>
+                            <div>13:45 PM</div>
+                            <div><?php echo $prescription['disease']?></div>
+                            <div><?php echo $prescription['allergy']?></div>
+                            <div><?php echo $prescription['prescription']?></div>
+                        </div>
+                    <?php endforeach ?>
                 </div>
             </div>
     </section>
